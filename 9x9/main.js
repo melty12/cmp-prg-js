@@ -1,15 +1,19 @@
-function Main(input1, input2)
+"use strict";
+
+function Main(input)
 {
+  input = input.split(" ");
   let result = "-1"
+
   if (
-    input1 >= 1 && input1 <= 9 &&
-    input2 >= 1 && input2 <= 9
+    input[0] >= 1 && input[0] <= 9 &&
+    input[1] >= 1 && input[1] <= 9
   )
   {
-    result = input1 * input2;
+    result = input[0] * input[1];
   }
 
   console.log(result)
 }
 
-Main(process.argv[2], process.argv[3]);
+Main(process.argv[2]);

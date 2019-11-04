@@ -1,3 +1,5 @@
+"use strict";
+
 function Main(input)
 {
 	input = parseInt(input);
