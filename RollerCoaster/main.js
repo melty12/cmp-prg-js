@@ -15,7 +15,7 @@ function Main(input) {
     }
   });
 
-  console.log(input, rules, K, heightArr);
+  console.log(result);
 }
 
 Main(input);
