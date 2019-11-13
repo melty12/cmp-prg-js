@@ -1,6 +1,6 @@
 let input = "8 8";
 
-const main = lines => {
+const main = (lines: string) => {
   const data = lines.split(" ");
   let division = parseInt(data[0], 10) - 1;
   let targetValue = parseInt(data[1], 10) - 1;
