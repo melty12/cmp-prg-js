@@ -4,17 +4,14 @@ const main = (lines: string) => {
   const data = lines.split(" ");
   const stoneLength = parseInt(data[0], 10);
   const stoneCoord = parseInt(data[1], 10);
-  let stoneCoords = new Set();
+  let stoneCoords = [stoneCoord];
 
-  for (let i = 0; i < stoneLength; i++) {
-    stoneCoords.add(stoneCoord - i);
-    stoneCoords.add(stoneCoord + i);
+  for (let i = 1; i < stoneLength; i++) {
+    stoneCoords.push(stoneCoord - i);
+    stoneCoords.push(stoneCoord + i);
   }
 
-  let result = [...stoneCoords.values()]
-    .map(Number)
-    .sort(conmpareFunc)
-    .join(" ");
+  let result = stoneCoords.sort(conmpareFunc).join(" ");
 
   console.log(result);
 };
