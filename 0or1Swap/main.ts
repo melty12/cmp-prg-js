@@ -5,34 +5,36 @@ const main = (lines: string) => {
   const sequence = data[1].split(" ").map(str => parseInt(str, 10));
   let result = "NO";
 
-  if (checkOrder(sequence) === "NO") {
-    let _sequence = sequence;
+  if (checkOrder(sequence)) result = "YES";
 
-    for (let i = 0; i < sequence.length - 1; i++) {
+  let _sequence;
+
+  for (let i = 0; i < sequence.length; i++) {
+    for (let j = 1; j < sequence.length; j++) {
+      _sequence = sequence.slice();
       const temp = _sequence[i];
+      _sequence[i] = _sequence[j];
+      _sequence[j] = temp;
 
-      _sequence[i] = _sequence[i + 1];
-      _sequence[i + 1] = temp;
-      result = checkOrder(_sequence);
+      if (checkOrder(_sequence)) {
+        result = "YES";
+        break;
+      }
     }
-  } else {
-    result = "YES";
   }
 
   console.log(result);
 };
 
 const checkOrder = (sequence: number[]) => {
-  let result: string = "YES";
-  for (let i = 0; i < sequence.length; i++) {
-    if (sequence[i] - sequence[i - 1] === 1) {
-      result = "YES";
-    } else {
-      result = "NO";
-    }
-  }
+  let temp = sequence.slice();
+  temp.sort((a, b) => (a < b ? -1 : 1));
 
-  return result;
+  temp.forEach((value, index) => {
+    if (value !== sequence[index]) return false;
+  });
+
+  return true;
 };
 
 main(input);
