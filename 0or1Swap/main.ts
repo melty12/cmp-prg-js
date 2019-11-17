@@ -27,7 +27,7 @@ const main = (lines: string) => {
 };
 
 const checkOrder = (sequence: number[]) => {
-  let temp = sequence.slice();
+  const temp = sequence.slice();
   temp.sort((a, b) => (a < b ? -1 : 1));
 
   temp.forEach((value, index) => {
