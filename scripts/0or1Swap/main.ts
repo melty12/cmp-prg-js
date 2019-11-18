@@ -4,16 +4,16 @@ const main = (lines: string) => {
   const data = lines.split("\n");
   const sequence = data[1].split(" ").map(str => parseInt(str, 10));
   const order = getOrder(sequence);
-  let correctSize: boolean[] = [];
+  let unCorrectSize: boolean[] = [];
   let result = "NO";
 
   sequence.forEach((number, i) => {
     if (number !== order[i]) {
-      correctSize.push(true);
+      unCorrectSize.push(true);
     }
   });
 
-  if (correctSize.length <= 2) {
+  if (unCorrectSize.length <= 2) {
     result = "YES";
   }
 
