@@ -2,18 +2,20 @@ let input = "30 -50";
 
 const main = (lines: string) => {
   const data = lines.split(" ");
-  const appleLength = parseInt(data[0], 10);
-  const tastePoint = parseInt(data[1], 10);
-  let tastePoints: number[] = [];
-  let taste;
+  const L = parseInt(data[0], 10);
+  const N = parseInt(data[1], 10);
   let tasteTotalValue = 0;
+  let minTaste = 0;
 
-  for (let i = 1; i <= appleLength; i++) {
-    tastePoints.push(Math.abs(i + tastePoint - 1));
-    tasteTotalValue += i + tastePoint - 1;
+  if (L + N - 1 < 0) {
+    minTaste = -Math.abs(L + N - 1);
+  } else if (N > 0) {
+    minTaste = Math.abs(N);
   }
 
-  console.log(tasteTotalValue - Math.min.apply(null, tastePoints));
+  tasteTotalValue = (L * (2 * N + L - 1)) / 2;
+
+  console.log(tasteTotalValue - minTaste);
 };
 
 main(input);
