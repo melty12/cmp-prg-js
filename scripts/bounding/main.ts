@@ -7,7 +7,7 @@ const main = (lines: string) => {
   let sumOfPoint = 0;
   let answer = 1;
 
-  points.forEach((point, index) => {
+  points.forEach(point => {
     sumOfPoint += point;
     if (sumOfPoint <= X) {
       answer += 1;
