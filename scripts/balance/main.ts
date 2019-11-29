@@ -4,20 +4,24 @@ const main = (lines: string) => {
   const data = lines.split("\n");
   const N = parseInt(data[0]);
   const weights = data[1].split(" ").map(str => parseInt(str));
-  let minSum, maxSum;
-  let absArr: number[] = [];
+  let sumOfWeights: number;
+  let calculateWeights: number = 0;
+  let answer: number | null = null
+  let temp: number;
 
+  sumOfWeights = weights.reduce((a, x) => a += x, 0)
 
-  for (let i = 1; i < N; i++) {
-    minSum = weights.slice(0, i).reduce((a, x) => a+=x, 0)
-    maxSum = weights.slice(i, N).reduce((a, x) => a+=x, 0)
+  weights.forEach(weight => {
+    sumOfWeights -= weight
+    calculateWeights += weight
 
-    absArr.push(Math.abs(minSum - maxSum))
-  }
+    temp = Math.abs(sumOfWeights - calculateWeights)
+    if (answer === null || answer > temp) {
+      answer = temp
+    }
+  });
 
-  absArr.reduce((a, x) => a+=x, 0)
-
-  console.log(Math.min.apply(null, absArr))
+  console.log(answer)
 };
 
 main(input);
