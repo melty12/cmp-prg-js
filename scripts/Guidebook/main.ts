@@ -17,5 +17,4 @@ const main = (input: string) => {
     const ans = lines.map(line => line.id).join('\n');
     console.log(ans);
 }
-
 main(input);
