@@ -1,5 +1,3 @@
-let input = "29\n20\n7\n35\n120";
-
 const main = (input: string) => {
   const lines = input.split("\n").map(str => parseInt(str));
   let sum = 0;
@@ -21,4 +19,4 @@ const main = (input: string) => {
   console.log(sum - maxTime);
 };
 
-main(input);
+main(require("fs").readFileSync("/dev/stdin", "utf8"));
