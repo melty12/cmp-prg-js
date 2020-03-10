@@ -1,32 +1,14 @@
 const main = (input: string) => {
-  const lines = input.split("\n").slice(1);
-  let K = [];
-  let result = 0;
+  const lines = input.trim().split("\n");
+  const [N, M] = lines[0].split(' ').map(x => parseInt(x));
 
-  for (let i = 0; i < lines.length; i++) {
-    K.push(lines[i].split(" ").map(str => parseInt(str)))
-    K[i].shift();
-  }
+  const A = lines.slice(1).flatMap(line => line.split(' ').slice(1)).map((food: string) => parseInt(food) - 1);
   
-  for (let i = 0; i < K.length; i++) {
-    let answer = 0;
+  const countMap = Array(M).fill(0);
+  A.forEach(food => countMap[food]++);
+  const answer = countMap.filter(count => count === N).length
 
-    for (let j = 0; j < K[i].length; j++) {
-      if(K[i].indexOf(K[i][j]) >= 0) {
-        answer += 1;
-      }
-    }
-
-    if(answer === K.length) {
-      result += 1;
-    }
-  }
-
-  if(K.length === 1) {
-    result = K[0].length;
-  }
-
-  console.log(result)
+  console.log(answer)
 }
 
 main(require('fs').readFileSync('/dev/stdin', 'utf8'));
