@@ -2,6 +2,7 @@ const main = (input: string) => {
   const [A, B] = input.trim().split(" ").map(str => parseInt(str))
   const taxRateA = 0.08
   const taxRateB = 0.1
+  const maxCount = 1010
   let count = 1;
   let answer = -1;
   
@@ -13,7 +14,7 @@ const main = (input: string) => {
     }
   }
 
-  while(count < 100) {
+  while(answer === -1 && count < maxCount) {
     answer = taxRateCalc(count)
     count += 1
   }
