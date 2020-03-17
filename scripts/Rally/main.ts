@@ -3,17 +3,19 @@ const main = (input: string) => {
   const N = parseInt(lines[0])
   const X = lines[1].split(" ").map(str => parseInt(str))
   const maxPoint = Math.max(...X)
-  let pointList: number[] = []
+  let consumptionList = [];
 
-  X.forEach((x, i) => {
-    for (let i = 1; i <= maxPoint; i++) {
-      if(i === N) {
-        pointList.push(Math.pow(x - i, 2))
-      }
-    }
-  });
+  for (let i = 1; i <= maxPoint; i++) {
+    let consumption = 0;
 
-  console.log(pointList)
+    X.forEach(x => {
+      consumption += Math.pow(i - x, 2)
+    });
+
+    consumptionList.push(consumption)
+  }
+
+  console.log(Math.min(...consumptionList))
 }
 
 main(require('fs').readFileSync('/dev/stdin', 'utf8'));
