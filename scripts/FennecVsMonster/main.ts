@@ -4,9 +4,7 @@ const main = (input: string) => {
   let H = lines[1].split(" ").map(str => parseInt(str))
   const removedMaxNumList = H.sort((a, b) => b - a).slice(K)
 
-  const sum = (arr: number[]) => {
-    return arr.reduce((a:number , b: number) => a + b, 0)
-  }
+  const sum = (arr: number[]) => arr.reduce((a:number , b: number) => a + b, 0)
 
   console.log(sum(removedMaxNumList))
 }
