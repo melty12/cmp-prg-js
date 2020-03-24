@@ -1,33 +1,24 @@
 const main = (input: string) => {
-  const [A, B, K] = input.split(" ").map(str => parseInt(str))
-  let divisorList = [];
-
-  const calcGcd = (a: number, b: number): number => {
-    const r = a % b;
-    if(r === 0) {
-      return b;
+  const lines = input.trim().split("\n");
+  const [N, M] = lines[0].split(" ").map(str => parseInt(str));
+  const waCount = new Array(N).fill(0);
+  const isAC = new Array(N).fill(false);
+  let waSum = 0;
+  
+  lines.slice(1).forEach((line: string) => {
+    const [p, s] = line.split(" ");
+    const pi = parseInt(p) - 1;
+    if (s === "AC" && !isAC[pi]) {
+      isAC[pi] = true;
+      waSum += waCount[pi];
+    } else {
+      waCount[pi]++;
     }
-    return calcGcd(b, a % b)
-  }
-
-  const compareFunc = (a: number, b: number) => {
-    return b - a;
-  }
-
-  const gcd = calcGcd(A, B)
-  const squareRoot = Math.ceil(Math.sqrt(gcd))
-
-  for (let i = squareRoot; i > 0; i--) {
-    if(gcd % i === 0) {
-      divisorList.push(i)
-      if(i !== gcd / i) {
-        divisorList.push(gcd / i)
-      }
-    }
-  }
-
-  divisorList.sort(compareFunc)
-  console.log(divisorList[K - 1])
+  });
+​
+  const acSum = isAC.filter(bool => bool).length;
+​
+  console.log(acSum + " " + waSum);
 }
 
 main(require('fs').readFileSync('/dev/stdin', 'utf8'));
