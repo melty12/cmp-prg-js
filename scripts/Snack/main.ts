@@ -1,18 +1,15 @@
 const main = (input: string) => {
   const [A, B] = input.trim().split(" ").map(str => parseInt(str))
-  let snack = 0
-  let count = 1
-  let isNotFound = true
-  
-  while (isNotFound) {
-    if(count % A === 0 && count % B === 0) {
-      snack = count
-      isNotFound = false
+  const getGcd = (a: number, b: number): number => {
+    if(b === 0) {
+      return a
     }
-    count += 1
+    return getGcd(b, a % b)
   }
 
-  console.log(snack)
+  const answer = A * B / getGcd(A, B)
+
+  console.log(answer)
 }
 
 main(require('fs').readFileSync('/dev/stdin', 'utf8'));
