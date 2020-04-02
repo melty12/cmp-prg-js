@@ -5,16 +5,16 @@ const main = (input: string) => {
   let right = Math.pow(10, 9) + 1
 
   while (right - left > 1) {
-    let center = Math.round((left + right) / 2)
+    let center = Math.floor((left + right) / 2)
     let purchasableAmount = A * center + B * String(center).length
 
-    if (purchasableAmount > X){
+    if (purchasableAmount > X) {
       right = center
     } else {
       left = center
     }
 
-    answer = center
+    answer = left
   }
 
   console.log(answer)
